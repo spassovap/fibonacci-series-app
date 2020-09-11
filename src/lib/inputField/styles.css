@@ -1,0 +1,11 @@
+.input-field {
+    border: unset;
+    border-bottom: 1px solid #FFB419;
+    margin: 8px;
+    height: 32px;
+    width: 400px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    outline: none;
+}

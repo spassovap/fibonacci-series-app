@@ -1,0 +1,19 @@
+.button-check {
+    display: inline-block;
+    margin: 0 4px;
+    padding: 8px;
+    border: 1px solid white;
+    font-size: 20px;
+    color: white
+}
+
+.button-check:hover {
+    background-color: darkslategrey;
+    cursor: pointer;
+}
+
+.no-select {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
