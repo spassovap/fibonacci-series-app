@@ -3,16 +3,14 @@ import { string } from 'prop-types';
 import './styles.css';
 
 export const InputField = ({
-    placeholder,
-    className
+    placeholder
 }) => (
         <input
-            className={`${className} input-field`}
+            className='input-field'
             placeholder={placeholder}
         />
     );
 
 InputField.propTypes = {
-    placeholder: string,
-    className: string
+    placeholder: string
 };

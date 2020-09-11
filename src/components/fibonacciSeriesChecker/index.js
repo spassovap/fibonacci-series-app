@@ -37,7 +37,6 @@ export class FibonacciSeriesChecker extends Component {
                 <div>
                     <InputField
                         placeholder={INPUT_PLACEHOLDER}
-                        className='input-field-dark'
                     />
                     <ButtonCheck
                         icon='&#10003;'
