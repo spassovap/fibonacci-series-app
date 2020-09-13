@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { string, func } from 'prop-types';
 import './styles.css'
 import { HEADER_TEXT, BUTTON_LABEL, INPUT_PLACEHOLDER } from './constants';
 import { ButtonCheck } from '../../lib/button';
@@ -10,15 +11,25 @@ export class FibonacciSeriesChecker extends Component {
         super();
 
         this.state = {
-            containerClassName: ''
+            containerClassName: '',
+            inputValue: ''
         }
 
-        this.setBackgroundColor = this.setBackgroundColor.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleButtonCheckClick = this.handleButtonCheckClick.bind(this);
     }
 
-    setBackgroundColor(correct) {
+    handleInputChange({ target: { value } }) {
         this.setState({
-            containerClassName: correct
+            inputValue: value
+        })
+    }
+
+    handleButtonCheckClick() {
+        const isValidSequence = this.props.isValidSequence(this.state.inputValue);
+
+        this.setState({
+            containerClassName: isValidSequence
                 ? 'background-green'
                 : 'background-red'
         });
@@ -26,25 +37,39 @@ export class FibonacciSeriesChecker extends Component {
 
     render() {
         const {
+            headerText = HEADER_TEXT,
+            inputPlaceholder = INPUT_PLACEHOLDER,
+            buttonCheckLabel = BUTTON_LABEL
+        } = this.props;
+
+        const {
             containerClassName
         } = this.state;
 
         return (
             <div className={`input-container ${containerClassName}`}>
                 <Header
-                    text={HEADER_TEXT}
+                    text={headerText}
                 />
                 <div>
                     <InputField
-                        placeholder={INPUT_PLACEHOLDER}
+                        placeholder={inputPlaceholder}
+                        onInputChange={this.handleInputChange}
                     />
                     <ButtonCheck
                         icon='&#10003;'
-                        label={BUTTON_LABEL}
-                        onClick={this.setBackgroundColor}
+                        label={buttonCheckLabel}
+                        onClick={this.handleButtonCheckClick}
                     />
                 </div>
             </div>
         )
     }
+};
+
+FibonacciSeriesChecker.propTypes = {
+    headerText: string,
+    inputPlaceholder: string,
+    buttonCheckLabel: string,
+    isValidSequence: func.isRequired
 };

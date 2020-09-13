@@ -1,16 +1,19 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 import './styles.css';
 
 export const InputField = ({
-    placeholder
+    placeholder,
+    onInputChange
 }) => (
         <input
             className='input-field'
             placeholder={placeholder}
+            onChange={onInputChange}
         />
     );
 
 InputField.propTypes = {
-    placeholder: string
+    placeholder: string,
+    onInputChange: func.isRequired
 };
