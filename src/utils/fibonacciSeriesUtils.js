@@ -19,8 +19,13 @@ export const isValidFibonacciSequence = inputValue => {
         if (index === 0) {
             valid = isFibonacciNumber(currentNumber);
         } else if (index === 1) {
+            const isSecondNumberInFibonacciSequence = previousNumber === currentNumber && currentNumber === 1;
+
             valid = isFibonacciNumber(currentNumber) &&
-                previousNumber < currentNumber &&
+                (
+                    previousNumber < currentNumber ||
+                    isSecondNumberInFibonacciSequence
+                ) &&
                 (
                     previousNumber === 0 ||
                     currentNumber - previousNumber < previousNumber
