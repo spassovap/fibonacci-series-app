@@ -26,10 +26,19 @@ export class FibonacciSeriesChecker extends Component {
     }
 
     handleButtonCheckClick() {
-        const isValidSequence = this.props.isValidSequence(this.state.inputValue);
+        const {
+            isValidInput,
+            isValidSequence
+        } = this.props;
+
+        const {
+            inputValue
+        } = this.state;
+
+        const sequenceIsValid = isValidInput(inputValue) && isValidSequence(inputValue);
 
         this.setState({
-            containerClassName: isValidSequence
+            containerClassName: sequenceIsValid
                 ? 'background-green'
                 : 'background-red'
         });
@@ -71,5 +80,6 @@ FibonacciSeriesChecker.propTypes = {
     headerText: string,
     inputPlaceholder: string,
     buttonCheckLabel: string,
+    isValidInput: func.isRequired,
     isValidSequence: func.isRequired
 };
